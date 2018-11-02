@@ -181,7 +181,7 @@ class OAuthService
             : 'https://auth.ebay.com/oauth2/authorize?';
 
         $specialAuthEbayHost = $this->getConfig('special_auth_ebay_host');
-        if (!is_null($specialAuthEbayHost) && $this->getConfig('sandbox')) {
+        if (!is_null($specialAuthEbayHost) && !$this->getConfig('sandbox')) {
             $url = str_replace('https://auth.ebay.com', $specialAuthEbayHost, $url);
         }
 
@@ -349,7 +349,7 @@ class OAuthService
     {
         $url = $this->getConfig('sandbox') ? static::$endPoints['sandbox'] : static::$endPoints['production'];
         $specialEbayHost = $this->getConfig('special_ebay_host');
-        if (!is_null($specialEbayHost) && $this->getConfig('sandbox')) {
+        if (!is_null($specialEbayHost) && !$this->getConfig('sandbox')) {
             $url = str_replace('https://api.ebay.com', $specialEbayHost, $url);
         }
         return $url;

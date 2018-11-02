@@ -191,7 +191,7 @@ abstract class BaseService
     {
         $url = $this->getConfig('sandbox') ? $this->sandboxUrl : $this->productionUrl;
         $specialEbayHost = $this->getConfig('special_ebay_host');
-        if (!is_null($specialEbayHost) && $this->getConfig('sandbox')) {
+        if (!is_null($specialEbayHost) && !$this->getConfig('sandbox')) {
             $url = str_replace('https://api.ebay.com', $specialEbayHost, $url);
         }
         return $url;
