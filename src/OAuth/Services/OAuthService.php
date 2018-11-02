@@ -180,6 +180,11 @@ class OAuthService
             ? 'https://auth.sandbox.ebay.com/oauth2/authorize?'
             : 'https://auth.ebay.com/oauth2/authorize?';
 
+        $specialAuthEbayHost = $this->getConfig('special_auth_ebay_host');
+        if (!is_null($specialAuthEbayHost) && $this->getConfig('sandbox')) {
+            $url = str_replace('https://auth.ebay.com', $specialAuthEbayHost, $url);
+        }
+
         $urlParams = [
             'client_id'     => $this->getConfig('credentials')->getAppId(),
             'redirect_uri'  => $this->getConfig('ruName'),
